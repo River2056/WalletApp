@@ -35,15 +35,33 @@ function saveAccount() {
 
 function calculate() {
     var left = parseInt(local.getItem("myAccount"));
-    left -= 3000;
+    var check = document.getElementById("include_min");
+    if(check.style.backgroundColor == "rgb(255, 255, 255)") {
+        left -= 0
+    } else {
+        left -= 3000;
+    }
     var remain = daysInMonth(year, month);
     remain = remain - date.getDate();
     left = left / remain;
     document.getElementById("cal_result").innerHTML = `${remain} days left! can only spend ${left} each day!`;
 }
 
+function changeColor() {
+    var min = document.getElementById("include_min");
+
+    if (min.style.backgroundColor == "rgb(255, 255, 255)") {
+        min.style.backgroundColor = "rgb(0, 255, 0)";
+    } else if (min.style.backgroundColor == "rgb(0, 255, 0)") {
+        min.style.backgroundColor = "rgb(255, 255, 255)";
+    }
+}
+
 function clearStorage() {
-    local.clear();
+    var check = window.confirm("Are you sure you want to clear data?");
+    if(check) {
+        local.clear();
+    }
 }
 
 function reloadPage() {

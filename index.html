@@ -31,15 +31,16 @@
 
         <div>
             <input class="btn" type="button" onclick="calculate()" value="Calculate">
+            <input style="background-color: #fff;" type="button" value="💵" id="include_min" onclick="changeColor()">
             <span id="cal_result"></span>
         </div>
 
         <div>
-            <input class="btn clr" type="button" onclick="clearStorage()" value="🚨clear data!🚨" />
-        </div>
-
-        <div>
             <input class="btn" type="button" onclick="reloadPage()" value="reload page" />
+        </div>
+        
+        <div>
+            <input class="btn clr" type="button" onclick="clearStorage()" value="🚨clear data!🚨" />
         </div>
     </div>
     <script src="app.js"></script>
