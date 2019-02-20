@@ -15,34 +15,37 @@
     </header>
     <div class="container">
         <div class="save_box">
-            <span>Enter your balance: </span><input id="act_bal" class="textbox" type="number" />
-            <input id="num_box" class="btn inline_block" type="button" value="save"/>
-            <span id="save_msg" class="hide">Done Saving!</span>
+            <span class="title"></span>
+            <input id="act_bal" type="number"/>
+            <input id="num_box" type="button"/>
+            <span id="save_msg"></span>
         </div>
         
         <div class="spent_box">
-            <span>Spent? </span><input id="spent" class="textbox" type="number" />
-            <input id="spent_btn" class="btn inline_block" type="button" value="spent"/>
-            <span id="spent_msg" class="hide">Done Recording!</span>
+            <span class="title"></span>
+            <input id="spent" type="number"/>
+            <input id="spent_btn" type="button"/>
+            <span id="spent_msg"></span>
         </div>
 
         <div class="balance_box">
-            <span>Show account balance: </span><input id="getbal_box" class="btn inline_block" type="button" value="show balance"/>
+            <span class="title"></span>
+            <input id="getbal_box" type="button"/>
             <span id="get_bal"></span>
         </div>
 
-        <div>
-            <input id="cal_btn" class="btn" type="button" value="Calculate"/>
-            <input type="button" value="💵" id="include_min"/>
+        <div class="calculate_box">
+            <input id="cal_btn" type="button"/>
+            <input id="include_min" type="button"/>
             <span id="cal_result"></span>
         </div>
 
-        <div>
-            <input id="reload_btn" class="btn" type="button" value="reload page" />
+        <div class="reload_box">
+            <input id="reload_btn" type="button"/>
         </div>
         
-        <div>
-            <input id="clear_btn" class="btn clr" type="button" value="🚨clear data!🚨" />
+        <div class="clear_box">
+            <input id="clear_btn" type="button"/>
         </div>
     </div>
 </body>
