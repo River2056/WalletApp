@@ -6,6 +6,8 @@
     <title>Wallet app</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+    <script type="text/javascript" src="./jquery-3.3.1.js"></script>
+    <script src="app.js"></script>
 </head>
 <body>
     <header>
@@ -14,35 +16,34 @@
     <div class="container">
         <div class="save_box">
             <span>Enter your balance: </span><input id="act_bal" class="textbox" type="number" />
-            <input id="num_box" class="btn inline_block" type="button" value="save" onclick="saveAccount()" />
+            <input id="num_box" class="btn inline_block" type="button" value="save"/>
             <span id="save_msg" class="hide">Done Saving!</span>
         </div>
         
         <div class="spent_box">
             <span>Spent? </span><input id="spent" class="textbox" type="number" />
-            <input class="btn inline_block" type="button" value="spent" onclick="deduct()" />
+            <input id="spent_btn" class="btn inline_block" type="button" value="spent"/>
             <span id="spent_msg" class="hide">Done Recording!</span>
         </div>
 
         <div class="balance_box">
-            <span>Show account balance: </span><input id="getbal_box" class="btn inline_block" type="button" onclick="getAccount()" value="show balance">
+            <span>Show account balance: </span><input id="getbal_box" class="btn inline_block" type="button" value="show balance"/>
             <span id="get_bal"></span>
         </div>
 
         <div>
-            <input class="btn" type="button" onclick="calculate()" value="Calculate">
-            <input style="background-color: #fff;" type="button" value="💵" id="include_min" onclick="changeColor()">
+            <input id="cal_btn" class="btn" type="button" value="Calculate"/>
+            <input type="button" value="💵" id="include_min"/>
             <span id="cal_result"></span>
         </div>
 
         <div>
-            <input class="btn" type="button" onclick="reloadPage()" value="reload page" />
+            <input id="reload_btn" class="btn" type="button" value="reload page" />
         </div>
         
         <div>
-            <input class="btn clr" type="button" onclick="clearStorage()" value="🚨clear data!🚨" />
+            <input id="clear_btn" class="btn clr" type="button" value="🚨clear data!🚨" />
         </div>
     </div>
-    <script src="app.js"></script>
 </body>
 </html>
