@@ -9,55 +9,63 @@ function daysInMonth(year, month) {
 }
 
 $(document).ready(function() {
+    $("#save_btn").hide();
+    $("#spent_btn").hide();
+
+    /**
+     * number box section
+     */
+    $("#num_input").addClass("textbox");
+
+    /**
+     * option button
+     */
+    $(".option_btn input").addClass("btn");
+    $(".option_btn input").val("option");
+    $(".option_btn input").click(function() {
+        $("#save_btn").toggle("fast");
+        $("#spent_btn").toggle("fast");
+    });
+
     /**
      * save section
      */
-    $(".save_box .title").text("Enter your balance: ");
-    $("#act_bal").addClass("textbox");
-    $("#num_box").addClass("btn inline_block");
-    $("#num_box").val("save");
+    $("#save_btn").addClass("btn");
+    $("#save_btn").val("save");
     $("#save_msg").text("Done Saving!");
-    $("#save_msg").addClass("hide");
-    $("#num_box").click(function() {
-        var money = $("#act_bal").val();
+    $("#save_msg").hide();
+    $("#save_btn").click(function() {
+        var money = $("#num_input").val();
         local.setItem("myAccount", money);
-        var saveMsg = $("#save_msg");
-        saveMsg.toggleClass("hide");
-        saveMsg.toggleClass("block");
+        $("#save_msg").show();
         setTimeout(() => location.reload(), 2000);
-
     });
     
 
     /**
      * spent section
      */
-    $(".spent_box .title").text("Spent? ");
-    $("#spent").addClass("textbox");
-    $("#spent_btn").addClass("btn inline_block");
+    $("#spent_btn").addClass("btn");
     $("#spent_btn").val("spent");
-    $("#spent_msg").addClass("hide");
     $("#spent_msg").text("Done Recording!");
+    $("#spent_msg").hide();
     $("#spent_btn").click(function() {
-        var spent = $("#spent").val();
+        var spent = $("#num_input").val();
         var account = local.getItem("myAccount");
         var newBalance = account - spent;
         local.setItem("myAccount", newBalance);
-        var spentMsg = $("#spent_msg");
-        spentMsg.toggleClass("hide");
-        spentMsg.toggleClass("block");
+        $("#spent_msg").show();
         setTimeout(() => location.reload(), 2000);
     });
 
     /**
      * display account balance section
      */
-    $(".balance_box .title").text("Show account balance: ");
-    $("#getbal_box").addClass("btn inline_block");
+    $("#getbal_box").addClass("btn");
     $("#getbal_box").val("show balance");
     $("#getbal_box").click(function() {
         var balance = local.getItem("myAccount");
-        $("#get_bal").html(`Your account balance is: ${ balance }`)
+        $("#get_bal").html(`balance: ${ balance }`)
     });
 
     /**

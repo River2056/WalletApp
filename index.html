@@ -14,38 +14,45 @@
         <h1>Wallet app</h1>
     </header>
     <div class="container">
-        <div class="save_box">
-            <span class="title"></span>
-            <input id="act_bal" type="number"/>
-            <input id="num_box" type="button"/>
-            <span id="save_msg"></span>
-        </div>
-        
-        <div class="spent_box">
-            <span class="title"></span>
-            <input id="spent" type="number"/>
-            <input id="spent_btn" type="button"/>
-            <span id="spent_msg"></span>
-        </div>
 
-        <div class="balance_box">
-            <span class="title"></span>
-            <input id="getbal_box" type="button"/>
-            <span id="get_bal"></span>
-        </div>
+        <div class="upper">
+            <div class="num_box">
+                <span>Enter number: </span>
+                <input id="num_input" type="number"/>
+            </div>
 
-        <div class="calculate_box">
-            <input id="cal_btn" type="button"/>
-            <input id="include_min" type="button"/>
-            <span id="cal_result"></span>
-        </div>
+            <div class="option_btn">
+                <input type="button"/>
+            </div>
 
-        <div class="reload_box">
-            <input id="reload_btn" type="button"/>
-        </div>
-        
-        <div class="clear_box">
-            <input id="clear_btn" type="button"/>
+            <div class="save_box">
+                <input id="save_btn" type="button"/>
+                <span id="save_msg"></span>
+            </div>
+                
+            <div class="spent_box">
+                <input id="spent_btn" type="button"/>
+                <span id="spent_msg"></span>
+            </div>
+
+            <div class="balance_box">
+                <input id="getbal_box" type="button" />
+                <span id="get_bal"></span>
+            </div>
+            
+            <div class="calculate_box">
+                <input id="cal_btn" type="button" />
+                <input id="include_min" type="button" />
+                <span id="cal_result"></span>
+            </div>
+            
+            <div class="reload_box">
+                <input id="reload_btn" type="button" />
+            </div>
+            
+            <div class="clear_box">
+                <input id="clear_btn" type="button" />
+            </div>
         </div>
     </div>
 </body>
