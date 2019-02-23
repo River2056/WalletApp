@@ -1,16 +1,29 @@
-var date = new Date();
-var month = date.getMonth();
-var year = date.getFullYear();
+const date = new Date();
+const month = date.getMonth();
+const year = date.getFullYear();
 
-var local = window.localStorage;
+const local = window.localStorage;
 
 function daysInMonth(year, month) {
     return parseInt(new Date(year, month + 1, 0).getDate());
 }
 
-$(document).ready(function() {
-    $("#save_btn").hide();
-    $("#spent_btn").hide();
+$(function() {
+    const saveBtn = $("#save_btn");
+    const saveMsg = $("#save_msg");
+    const optBtn = $(".option_btn input");
+    const spentBtn = $("#spent_btn");
+    const spentMsg = $("#spent_msg");
+    const getBal = $("#getbal_box");
+    const getMsg = $("#get_bal");
+    const calBtn = $("#cal_btn");
+    const calRes = $("#cal_result");
+    const min = $("#include_min");
+    const reload = $("#reload_btn");
+    const clear = $("#clear_btn");
+
+    saveBtn.hide();
+    spentBtn.hide();
 
     /**
      * number box section
@@ -20,9 +33,9 @@ $(document).ready(function() {
     /**
      * option button
      */
-    $(".option_btn input").addClass("btn");
-    $(".option_btn input").val("option");
-    $(".option_btn input").click(function() {
+    optBtn.addClass("btn");
+    optBtn.val("option");
+    optBtn.click(function() {
         $("#save_btn").toggle("fast");
         $("#spent_btn").toggle("fast");
     });
@@ -30,11 +43,11 @@ $(document).ready(function() {
     /**
      * save section
      */
-    $("#save_btn").addClass("btn");
-    $("#save_btn").val("save");
-    $("#save_msg").text("Done Saving!");
-    $("#save_msg").hide();
-    $("#save_btn").click(function() {
+    saveBtn.addClass("btn");
+    saveBtn.val("save");
+    saveMsg.text("Done Saving!");
+    saveMsg.hide();
+    saveBtn.click(function() {
         var money = $("#num_input").val();
         local.setItem("myAccount", money);
         $("#save_msg").show();
@@ -45,14 +58,14 @@ $(document).ready(function() {
     /**
      * spent section
      */
-    $("#spent_btn").addClass("btn");
-    $("#spent_btn").val("spent");
-    $("#spent_msg").text("Done Recording!");
-    $("#spent_msg").hide();
-    $("#spent_btn").click(function() {
-        var spent = $("#num_input").val();
-        var account = local.getItem("myAccount");
-        var newBalance = account - spent;
+    spentBtn.addClass("btn");
+    spentBtn.val("spent");
+    spentMsg.text("Done Recording!");
+    spentMsg.hide();
+    spentBtn.click(function() {
+        let spent = $("#num_input").val();
+        let account = local.getItem("myAccount");
+        let newBalance = account - spent;
         local.setItem("myAccount", newBalance);
         $("#spent_msg").show();
         setTimeout(() => location.reload(), 2000);
@@ -61,11 +74,11 @@ $(document).ready(function() {
     /**
      * display account balance section
      */
-    $("#getbal_box").addClass("btn");
-    $("#getbal_box").val("show balance");
-    $("#getbal_box").click(function() {
-        var balance = local.getItem("myAccount");
-        $("#get_bal").html(`balance: ${ balance }`)
+    getBal.addClass("btn");
+    getBal.val("balance");
+    getBal.click(function() {
+        let balance = local.getItem("myAccount");
+        getMsg.html(`balance: ${ balance }`)
     });
 
     /**
@@ -73,30 +86,28 @@ $(document).ready(function() {
      * money icon on(green) => keep minimum savings == 3000
      * money icon off(white) => don't keep savings, calculate according storage number
      */
-    $("#cal_btn").addClass("btn");
-    $("#cal_btn").val("Calculate");
-    
-    $("#cal_btn").click(function() {
-        var left = local.getItem("myAccount");
-        var check = $("#include_min").css("backgroundColor");
+    calBtn.addClass("btn");
+    calBtn.val("Calculate");
+    calBtn.click(function() {
+        let left = local.getItem("myAccount");
+        let check = $("#include_min").css("backgroundColor");
         if(check == "rgb(255, 255, 255)") {
             left -= 0;
         } else if(check == "rgb(0, 255, 0)") {
             left -= 3000;
         }
-        var remain = daysInMonth(year, month);
+        let remain = daysInMonth(year, month);
         remain -= date.getDate();
         left /= remain;
-        $("#cal_result").html(`${remain} days left! can only spend ${left} each day!`);
+        calRes.html(`${remain} days spend ${left} each`);
     });
 
     /**
      * change money icon section
      * white <==> green
      */
-    $("#include_min").val("💵");
-    $("#include_min").click(function() {
-        var min = $("#include_min");
+    min.val("💵");
+    min.click(function() {
         if(min.css("backgroundColor") == "rgb(255, 255, 255)") { // if white
             min.css("backgroundColor", "rgb(0, 255, 0)"); // change to green
         } else if (min.css("backgroundColor") == "rgb(0, 255, 0)") { // if green
@@ -107,9 +118,9 @@ $(document).ready(function() {
     /**
      * reload button == F5
      */
-    $("#reload_btn").addClass("btn");
-    $("#reload_btn").val("reload page");
-    $("#reload_btn").click(function() {
+    reload.addClass("btn");
+    reload.val("reload");
+    reload.click(function() {
         location.reload();
     });
 
@@ -118,13 +129,12 @@ $(document).ready(function() {
      * pops a confirm window first, 
      * then clear storage
      */
-    $("#clear_btn").addClass("btn clr");
-    $("#clear_btn").val("🚨clear data!🚨");
-    $("#clear_btn").click(function() {
-        var check = window.confirm("Are you sure you want to clear data?");
+    clear.addClass("btn clr");
+    clear.val("🚨clear data!🚨");
+    clear.click(function() {
+        let check = confirm("Are you sure you want to clear data?");
         if (check) {
             local.clear();
         }
     });
-
 });
